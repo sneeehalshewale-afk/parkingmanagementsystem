@@ -140,7 +140,5 @@ The main objective is to develop a simple and efficient digital parking manageme
 
 GitHub: [@sneeehalshewale-afk](https://github.com/sneeehalshewale-afk)
 
-## 📄 License
 
-No license has been specified yet. All rights are reserved by the author unless a license is added to this repository.
 
