@@ -1,0 +1,64 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<main class="main-content">
+    <h1 style="text-align:center; color:#1e293b; margin-bottom: 25px;">🚦 Permission & Safety Rules</h1>
+
+    <section class="cards-container" style="display:flex; flex-wrap: wrap; gap: 20px; justify-content: center;">
+        <!-- Permissions Card -->
+        <div class="card" style="flex:1; min-width:250px; background:#4f46e5; color:white; padding:20px; border-radius:15px; box-shadow:0 5px 15px rgba(0,0,0,0.1); transition:0.3s;">
+            <h2>🔒 Permissions</h2>
+            <ul style="list-style:none; padding-left:0; margin-top:10px;">
+                <li>👨‍🎓 Students & Teachers: Park freely in available slots.</li>
+                <li>🛡️ College Staff: Monitor parking & guide traffic.</li>
+                <li>🚶 Visitors: Allowed only if permitted by staff.</li>
+            </ul>
+        </div>
+
+        <!-- Rules Card -->
+        <div class="card" style="flex:1; min-width:250px; background:#10b981; color:white; padding:20px; border-radius:15px; box-shadow:0 5px 15px rgba(0,0,0,0.1); transition:0.3s;">
+            <h2>📜 Rules</h2>
+            <ul style="list-style:none; padding-left:0; margin-top:10px;">
+                <li>🅿️ Park only in free slots; don’t block others.</li>
+                <li>👮 Follow staff or security directions.</li>
+                <li>🚨 Avoid reserved/emergency zones.</li>
+                <li>⏰ Remove vehicles after college hours.</li>
+                <li>⚠️ Report accidents or damage immediately.</li>
+                <li>✍️ Keep vehicle details updated in the system.</li>
+            </ul>
+        </div>
+
+        <!-- Safety Rules Card -->
+        <div class="card" style="flex:1; min-width:250px; background:#f59e0b; color:white; padding:20px; border-radius:15px; box-shadow:0 5px 15px rgba(0,0,0,0.1); transition:0.3s;">
+            <h2>🛡️ Safety Rules</h2>
+            <ul style="list-style:none; padding-left:0; margin-top:10px;">
+                <li>🎯 Always wear a seatbelt inside campus.</li>
+                <li>🏎️ Follow campus speed limits (20 km/h).</li>
+                <li>🚶 Watch for pedestrians while driving.</li>
+                <li>📵 No phone use while driving.</li>
+                <li>🛑 Follow traffic signs & markings.</li>
+                <li>⚡ Drive safely and responsibly at all times.</li>
+            </ul>
+        </div>
+    </section>
+
+    <section style="margin-top: 30px; text-align:center;">
+        <p style="color:#374151; font-size:16px;">💡 This system tracks check-in/check-out for monitoring purposes only. No pre-booking required. Stay safe and follow the rules!</p>
+    </section>
+
+    <style>
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        }
+        h2 {
+            margin-bottom: 10px;
+            font-family: 'Poppins', sans-serif;
+        }
+        ul li {
+            margin-bottom: 8px;
+            font-size: 16px;
+        }
+    </style>
+</main>
+{% endblock %}

@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Parking Management System</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+    <div class="dashboard">
+
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-logo">
+                <img src="{{ url_for('static', filename='images/logo.jpeg') }}" class="logo">
+                <h2>ParkFlow</h2>
+            </div>
+       <ul class="sidebar-menu">
+    <li><a href="/index"><i class="fa fa-gauge"></i> Dashboard</a></li>
+    <li><a href="/report"><i class="fa fa-chart-line"></i> Reports</a></li>
+    <li><a href="problem.html"><i class="fa fa-triangle-exclamation"></i> Problems</a></li>
+    <li><a href="/permission"><i class="fa fa-lock"></i> Permission</a></li>
+</ul>
+
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+
+            <!-- Top Navbar -->
+            <nav class="top-navbar">
+                <div class="navbar-left">
+                    <span class="project-name">Overview</span>
+                </div>
+
+                <div class="navbar-center">
+                    {% for floor in floors %}
+                        <button class="floor-btn" onclick="switchFloor('{{ floor.number }}')">
+                            Floor {{ floor.number }}
+                        </button>
+                    {% endfor %}
+                </div>
+
+                <div class="navbar-right">
+                    <span class="stat filled">Filled: <b id="filled-count">0</b></span>
+                    <span class="stat empty">Empty: <b id="empty-count">0</b></span>
+                    <span class="stat total">Total: <b id="total-count">0</b></span>
+                </div>
+            </nav>
+
+            <!-- Parking Lot -->
+            <section id="parking-lot">
+                {% for floor in floors %}
+  <div class="floor" data-floor="{{ floor.number }}" {% if floor.number != 1 %}style="display:none"{% endif %}>
+    <h2>Floor {{ floor.number }}</h2>
+    <div class="parking-layout">
+
+      <!-- Car animation for this floor -->
+      <div id="car-animation-{{ floor.number }}" class="car-animation">
+        <img src="{{ url_for('static', filename='images/car.png') }}" alt="car" />
+      </div>
+
+      <!-- Top row -->
+      <div class="slot-row top-row">
+        {% for slot in floor.slots[:5] %}
+          <div class="slot {% if slot.occupied %}occupied{% endif %}" 
+              data-id="{{ slot.id }}"
+              data-floor="{{ floor.number }}"
+              onclick="handleSlotClick('{{ slot.id }}', '{{ floor.number }}')">
+            {% if slot.occupied %}
+              🚗
+            {% else %}
+              🅿️
+            {% endif %}
+          </div>
+        {% endfor %}
+      </div>
+
+      <!-- Road in middle -->
+      <div class="road"></div>
+
+      <!-- Bottom row -->
+      <div class="slot-row bottom-row">
+        {% for slot in floor.slots[5:10] %}
+          <div class="slot {% if slot.occupied %}occupied{% endif %}" 
+              data-id="{{ slot.id }}"
+              data-floor="{{ floor.number }}"
+              onclick="handleSlotClick('{{ slot.id }}', '{{ floor.number }}')">
+            {% if slot.occupied %}
+              🚗
+            {% else %}
+              🅿️
+            {% endif %}
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+{% endfor %}
+
+            </section>
+
+        </main>
+    </div>
+
+    <!-- Modal -->
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <h3 id="modal-title"></h3>
+            <input type="text" id="vehicle-number" placeholder="Vehicle Number">
+            <input type="text" id="owner-name" placeholder="Owner Name">
+            <div class="modal-actions">
+                <button id="confirm-btn">Confirm</button>
+                <button id="cancel-btn">Cancel</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+</html>
